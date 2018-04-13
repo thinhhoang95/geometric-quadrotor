@@ -10,11 +10,13 @@ function [dcm] = angle2dcm(x1,x2,x3,seq)
 r = [x1, x2, x3];
 
 switch seq
-  case 'ZYX'
+  case 321
     dcm = Tx(r(3))*Ty(r(2))*Tz(r(1));
-  case 'ZXZ'
+  case 313
     dcm = Tz(r(3))*Tx(r(2))*Tz(r(1));
-  case 'XYZ'
+  case 123
+    dcm = Tx(r(1))*Ty(r(2))*Tz(r(3));
+  otherwise
     dcm = Tx(r(1))*Ty(r(2))*Tz(r(3));
 end
 

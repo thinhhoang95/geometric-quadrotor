@@ -16,10 +16,13 @@ IC = importdata('Initial Conditions/IC_HoverAt10ft.mat');
 Path = importdata('Path Command Files/Path_Diamond.mat');
 
 % Some variable initialisations
+t=Path.x.Time;
 x=reshape(Path.x.data(1,1,:),[7,1]);
 y=reshape(Path.y.data(1,1,:),[7,1]);
 z=reshape(Path.z.data(1,1,:),[7,1]);
 psi=reshape(Path.psi.data(1,1,:),[7,1]);
+
+quadModel.J = diag([quadModel.Jx; quadModel.Jy; quadModel.Jz]);
 
 % Bus types declarations
 
