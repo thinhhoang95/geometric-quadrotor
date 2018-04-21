@@ -1,0 +1,42 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<body>
+<script src="resources/eml_report_loadable_data.js"></script>
+<div class="dead">
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="37,1" id="srcline1"> 1</a></span><span class="line">function [dcm] = angle2dcm(x1,x2,x3,seq)</span></span>
+<span class="srcline"><span class="lineno"><a href="37,2" id="srcline2"> 2</a></span><span class="line"><span class="comment">% dcm = angle2dcm(r1,r2,r3,seq)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="37,3" id="srcline3"> 3</a></span><span class="line"><span class="comment">% builds euler angle rotation matrix</span></span></span>
+<span class="srcline"><span class="lineno"><a href="37,4" id="srcline4"> 4</a></span><span class="line"><span class="comment">% </span></span></span>
+<span class="srcline"><span class="lineno"><a href="37,5" id="srcline5"> 5</a></span><span class="line"><span class="comment">% r = [r1 r2 r3]</span></span></span>
+<span class="srcline"><span class="lineno"><a href="37,6" id="srcline6"> 6</a></span><span class="line"><span class="comment">% seq = 'ZYX' (default)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="37,7" id="srcline7"> 7</a></span><span class="line"><span class="comment">%       'ZXZ'</span></span></span>
+<span class="srcline"><span class="lineno"><a href="37,8" id="srcline8"> 8</a></span><span class="line"><span class="comment">% dcm = direction cosine matrix</span></span></span>
+<span class="srcline"><span class="lineno"><a href="37,9" id="srcline9"> 9</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="37,10" id="srcline10">10</a></span><span class="line">r = [x1, x2, x3];</span></span>
+<span class="srcline"><span class="lineno"><a href="37,11" id="srcline11">11</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="37,12" id="srcline12">12</a></span><span class="line">switch seq</span></span>
+<span class="srcline"><span class="lineno"><a href="37,13" id="srcline13">13</a></span><span class="line">  case 321</span></span>
+<span class="srcline"><span class="lineno"><a href="37,14" id="srcline14">14</a></span><span class="line">    dcm = Tx(r(3))*Ty(r(2))*Tz(r(1));</span></span>
+<span class="srcline"><span class="lineno"><a href="37,15" id="srcline15">15</a></span><span class="line">  case 313</span></span>
+<span class="srcline"><span class="lineno"><a href="37,16" id="srcline16">16</a></span><span class="line">    dcm = Tz(r(3))*Tx(r(2))*Tz(r(1));</span></span>
+<span class="srcline"><span class="lineno"><a href="37,17" id="srcline17">17</a></span><span class="line">  case 123</span></span>
+<span class="srcline"><span class="lineno"><a href="37,18" id="srcline18">18</a></span><span class="line">    dcm = Tx(r(1))*Ty(r(2))*Tz(r(3));</span></span>
+<span class="srcline"><span class="lineno"><a href="37,19" id="srcline19">19</a></span><span class="line">  otherwise</span></span>
+<span class="srcline"><span class="lineno"><a href="37,20" id="srcline20">20</a></span><span class="line">    dcm = Tx(r(1))*Ty(r(2))*Tz(r(3));</span></span>
+<span class="srcline"><span class="lineno"><a href="37,21" id="srcline21">21</a></span><span class="line">end</span></span>
+<span class="srcline"><span class="lineno"><a href="37,22" id="srcline22">22</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="37,23" id="srcline23">23</a></span><span class="line">function A = Tx(a)</span></span>
+<span class="srcline"><span class="lineno"><a href="37,24" id="srcline24">24</a></span><span class="line">A = [1 0 0;0 cosd(a) sind(a);0 -sind(a) cosd(a)];</span></span>
+<span class="srcline"><span class="lineno"><a href="37,25" id="srcline25">25</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="37,26" id="srcline26">26</a></span><span class="line">function A = Ty(a)</span></span>
+<span class="srcline"><span class="lineno"><a href="37,27" id="srcline27">27</a></span><span class="line">A = [cosd(a) 0 -sind(a);0 1 0;sind(a) 0 cosd(a)];</span></span>
+</pre>
+</div>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="37,28" id="srcline28">28</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="37,29" id="srcline29">29</a></span><span class="line"><span class="keyword">function</span> <span class="var type1" id="S22T2U171">A</span> = Tz(<span class="var type1" id="S23T4U174">a</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="37,30" id="srcline30">30</a></span><span class="line"><span class="mxinfo " id="T2:U3"><span class="var type1" id="S22T2U177">A</span> = <span class="mxinfo " id="T2:U5">[<span class="mxinfo " id="T9:U6"><span class="mxinfo " id="T4:U7">cosd(<span class="var type1" id="S23T4U182">a</span>)</span> <span class="mxinfo " id="T4:U9">sind(<span class="var type1" id="S23T4U185">a</span>)</span> <span class="mxinfo " id="T4:U11">0</span></span>;<span class="mxinfo " id="T9:U12"><span class="mxinfo " id="T4:U13">-<span class="mxinfo " id="T4:U14">sind(<span class="var type1" id="S23T4U191">a</span>)</span></span> <span class="mxinfo " id="T4:U16">cosd(<span class="var type1" id="S23T4U194">a</span>)</span> <span class="mxinfo " id="T4:U18">0</span></span>;<span class="mxinfo " id="T9:U19">0 0 1</span>]</span></span>;</span></span>
+</pre>
+</body>
+</html>

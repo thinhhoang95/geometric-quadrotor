@@ -1,0 +1,23 @@
+CC     = "C:\Program Files\MATLAB\R2017b\sys\lcc64\lcc64\bin\lcc64.exe"
+LD     = "C:\Program Files\MATLAB\R2017b\sys\lcc64\lcc64\bin\lcclnk64.exe"
+LIBCMD = "C:\Program Files\MATLAB\R2017b\sys\lcc64\lcc64\bin\lcclib64.exe"
+CFLAGS = -dll -noregistrylookup  -c -Zp8 -DLCC_WIN64 -DMATLAB_MEX_FILE -nodeclspec -DMX_COMPAT_32 
+LDFLAGS = -s -dll -L"C:\Program Files\MATLAB\R2017b\sys\lcc64\lcc64\lib64" -entry LibMain -map sfun.map 
+LIBFLAGS = 
+
+OBJECTS = \
+	"NLGCToolbox_sfun.obj"\
+	"c3_NLGCToolbox.obj"\
+	"c_mexapi_version.obj"\
+
+INCLUDE_PATH= -I"C:\Program Files\MATLAB\R2017b\extern\include"  -I"C:\Program Files\MATLAB\R2017b\simulink\include"  -I"C:\Program Files\MATLAB\R2017b\simulink\include\sf_runtime"  -I"C:\Program Files\MATLAB\R2017b\stateflow\c\mex\include"  -I"C:\Program Files\MATLAB\R2017b\rtw\c\src"  -I"C:\Users\hoang\Documents\MATLAB\NLGControl_Quadrotor_1\slprj\_sfprj\mod_sl_quadrotor\NLGCToolbox\sfun\src"  -I"C:\Program Files\MATLAB\R2017b\sys\lcc64\lcc64\include64" 
+ 
+
+NLGCToolbox_sfun.lib : $(MAKEFILE) $(OBJECTS)
+	$(LIBCMD) $(LIBFLAGS) /OUT:NLGCToolbox_sfun.lib *.obj
+NLGCToolbox_sfun.obj :	"NLGCToolbox_sfun.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "NLGCToolbox_sfun.c"
+c3_NLGCToolbox.obj :	"c3_NLGCToolbox.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "c3_NLGCToolbox.c"
+c_mexapi_version.obj :	"C:\Program Files\MATLAB\R2017b\extern\version\c_mexapi_version.c"
+	$(CC) $(CFLAGS) $(INCLUDE_PATH) "C:\Program Files\MATLAB\R2017b\extern\version\c_mexapi_version.c"

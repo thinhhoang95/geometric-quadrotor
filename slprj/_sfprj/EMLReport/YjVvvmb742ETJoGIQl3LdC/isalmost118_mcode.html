@@ -1,0 +1,57 @@
+<!-- saved from url=(0014)about:internet -->
+<html>
+<body>
+<script src="resources/eml_report_loadable_data.js"></script>
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="55,1" id="srcline1"> 1</a></span><span class="line"><span class="keyword">function</span> <span class="var type1" id="S2T30U3">test</span> = isalmost(<span class="var type1" id="S3T7U6">a</span>,<span class="var type1" id="S4T7U7">b</span>,<span class="var type1" id="S5T4U8">tol</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="55,2" id="srcline2"> 2</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,3" id="srcline3"> 3</a></span><span class="line"><span class="comment">% usage: test = isalmost(a,b,tol)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,4" id="srcline4"> 4</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,5" id="srcline5"> 5</a></span><span class="line"><span class="comment">% tests if matrix a is approximately equal to b within a specified </span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,6" id="srcline6"> 6</a></span><span class="line"><span class="comment">% tolerance interval (b-tol &lt;= a &lt;= b+tol)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,7" id="srcline7"> 7</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,8" id="srcline8"> 8</a></span><span class="line"><span class="comment">% note:  if b is given as a scalar, all values in a are compared against</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,9" id="srcline9"> 9</a></span><span class="line"><span class="comment">%        the scalar value b</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,10" id="srcline10">10</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,11" id="srcline11">11</a></span><span class="line"><span class="comment">% calls: none</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,12" id="srcline12">12</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,13" id="srcline13">13</a></span><span class="line"><span class="comment">% inputs:</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,14" id="srcline14">14</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,15" id="srcline15">15</a></span><span class="line"><span class="comment">% a(nr,nc) = matrix of data values to test</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,16" id="srcline16">16</a></span><span class="line"><span class="comment">% b(nr,nc) = matrix of data values for comparison (or a single scalar value)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,17" id="srcline17">17</a></span><span class="line"><span class="comment">%      tol = tolerance used in computation</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,18" id="srcline18">18</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,19" id="srcline19">19</a></span><span class="line"><span class="comment">% outputs:</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,20" id="srcline20">20</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,21" id="srcline21">21</a></span><span class="line"><span class="comment">% test(nr,nc) = matrix of test results:</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,22" id="srcline22">22</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,23" id="srcline23">23</a></span><span class="line"><span class="comment">%        test(i,j) = 0 -&gt; a(i,j) is not equal to b(i,j) (or is NaN)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,24" id="srcline24">24</a></span><span class="line"><span class="comment">%        test(i,j) = 1 -&gt; a(i,j) is approximately equal to b(i,j)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,25" id="srcline25">25</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,26" id="srcline26">26</a></span><span class="line"><span class="comment">%   author : James Crawford </span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,27" id="srcline27">27</a></span><span class="line"><span class="comment">%   created 01/08/2007</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,28" id="srcline28">28</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,29" id="srcline29">29</a></span><span class="line"><span class="comment">%   history: v1.0 (01/08/2007)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,30" id="srcline30">30</a></span><span class="line"><span class="comment">%</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,31" id="srcline31">31</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="55,32" id="srcline32">32</a></span><span class="line"><span class="comment">% get length of input matrix a</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,33" id="srcline33">33</a></span><span class="line"><span class="mxinfo " id="T4:U5">[<span class="var type1" id="S6T4U12">nr</span>,<span class="var type1" id="S7T4U13">nc</span>] = size(<span class="var type1" id="S3T7U16">a</span>)</span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="55,34" id="srcline34">34</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="55,35" id="srcline35">35</a></span><span class="line"><span class="comment">% check input for consistency</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,36" id="srcline36">36</a></span><span class="line"><span class="keyword">if</span> ~all(size(<span class="var type1" id="S3T7U25">a</span>) == size(<span class="var type1" id="S4T7U28">b</span>))</span></span>
+<span class="srcline"><span class="lineno"><a href="55,37" id="srcline37">37</a></span><span class="line">   <span class="keyword">if</span> all(size(<span class="var type0" id="S4T0U36">b</span>) == [1 1])</span></span>
+<span class="srcline"><span class="lineno"><a href="55,38" id="srcline38">38</a></span><span class="line">      <span class="comment">% convert scalar value b to a matrix of size(a)</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,39" id="srcline39">39</a></span><span class="line">      <span class="var type0" id="S4T0U43">b</span> = <span class="var type0" id="S4T0U45">b</span>*ones(size(<span class="var type0" id="S3T0U50">a</span>));</span></span>
+<span class="srcline"><span class="lineno"><a href="55,40" id="srcline40">40</a></span><span class="line">   <span class="keyword">else</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,41" id="srcline41">41</a></span><span class="line">      disp(<span class="string">'error: input arguments are inconsistent (isalmost.m)'</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="55,42" id="srcline42">42</a></span><span class="line">      disp(<span class="string">'(b) must be a matrix of same size as (a) or a single value'</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="55,43" id="srcline43">43</a></span><span class="line">   <span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,44" id="srcline44">44</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,45" id="srcline45">45</a></span><span class="line"><span class="mxinfo " id="T7:U11"><span class="var type1" id="S12T7U62">one</span> = <span class="mxinfo " id="T7:U13">ones(size(<span class="var type1" id="S4T7U67">b</span>))</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="55,46" id="srcline46">46</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="55,47" id="srcline47">47</a></span><span class="line"><span class="comment">% perform test</span></span></span>
+<span class="srcline"><span class="lineno"><a href="55,48" id="srcline48">48</a></span><span class="line"><span class="mxinfo " id="T30:U15"><span class="var type1" id="S2T30U70">test</span> = <span class="mxinfo " id="T30:U17">(<span class="mxinfo " id="T30:U18"><span class="var type1" id="S3T7U74">a</span> &lt;= <span class="mxinfo " id="T7:U20"><span class="var type1" id="S4T7U76">b</span>+<span class="mxinfo " id="T7:U22"><span class="var type1" id="S5T4U78">tol</span>*<span class="var type1" id="S12T7U79">one</span></span></span></span>)&amp;(<span class="mxinfo " id="T30:U25"><span class="var type1" id="S3T7U82">a</span> &gt;= <span class="mxinfo " id="T7:U27"><span class="var type1" id="S4T7U84">b</span>-<span class="mxinfo " id="T7:U29"><span class="var type1" id="S5T4U86">tol</span>*<span class="var type1" id="S12T7U87">one</span></span></span></span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="55,49" id="srcline49">49</a></span><span class="line"><span class="comment">%</span></span></span>
+</pre>
+</body>
+</html>

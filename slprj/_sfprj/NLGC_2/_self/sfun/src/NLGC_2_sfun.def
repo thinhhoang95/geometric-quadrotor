@@ -1,0 +1,4 @@
+LIBRARY NLGC_2_sfun.mexw64
+EXPORTS
+mexFunction
+mexfilerequiredapiversion

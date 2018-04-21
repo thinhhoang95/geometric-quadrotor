@@ -1,0 +1,4 @@
+LIBRARY NLGCToolbox_sfun.lib
+EXPORTS
+mexFunction
+mexfilerequiredapiversion
