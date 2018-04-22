@@ -19,20 +19,20 @@ function Omega = rr2ar(Ri,Rf,Ts)
 % 
 % Another implementation based on Wronskian of Euler Angles
 eul_angles = mod_tr2rpy(Rf)';
-phi = eul_angles(3); % yaw
+phi = eul_angles(1); % roll
 the = eul_angles(2); % pitch
-psi = eul_angles(1); % roll
+psi = eul_angles(3); % yaw
 
 eul_angles_i = mod_tr2rpy(Ri)';
-phi_i = eul_angles_i(3); % yaw
+phi_i = eul_angles_i(1); % roll
 the_i = eul_angles_i(2); % pitch
-psi_i = eul_angles_i(1); % roll
+psi_i = eul_angles_i(3); % yaw
 
-iW = [0        sin(psi)          cos(psi);             %inverted Wronskian
-      0        cos(psi)*cos(the) -sin(psi)*cos(the);
-      cos(the) sin(psi)*sin(the) cos(psi)*sin(the)] / cos(the);
+Beb = [1 sin(phi)*tan(the) cos(phi)*tan(the);
+    0 cos(phi) -sin(phi);
+    0 sin(phi)/cos(the) cos(phi)/cos(the)];
 
-Omega = iW*([phi-phi_i the-the_i psi-psi_i])'/Ts; % yaw-pitch-roll rate
+Omega = inv(Beb)*[phi-phi_i; the-the_i; psi-psi_i]/Ts;
 
 % Another implementation
 % rpy2 = mod_tr2rpy(Rf);
