@@ -1,18 +1,23 @@
 clear all;
 clc;
 
-fprintf('NLGC Quadrotor 1.0 - Geometric Tracking Control Simulation\n');
+fprintf('NLGC Quadrotor 1.1 - Geometric Tracking Control Simulation\n');
 fprintf('By Hoang Dinh Thinh (thinh@neuralmetrics.net)\n');
-fprintf('Built upon QuadSim - Copyright GPL LESSER. All rights reserved.\n');
+fprintf('Built upon a Quadrotor model from Robotics Toolbox by Peter Corke.\n');
+fprintf('Now starting Robotics Toolbox...\n');
 
+run('rvctools/startup_rvc.m');
+
+fprintf('Resolving directories...\n');
 % Search directories
 addpath('Graphical User Interfaces');
 addpath('Functions');
 addpath('SML Addon Models');
 
+fprintf('Loading sample paths...\n');
 % Quadrotor dynamics, initial condition and position tracking path data
-quadModel = importdata('Quadcopter Structure Files/quadModel_X.mat');
-IC = importdata('Initial Conditions/IC_HoverAt10ft.mat');
+% quadModel = importdata('Quadcopter Structure Files/quadModel_X.mat');
+% IC = importdata('Initial Conditions/IC_HoverAt10ft.mat');
 Path = importdata('Path Command Files/Path_Diamond.mat');
 
 % Some variable initialisations
@@ -22,7 +27,18 @@ y=reshape(Path.y.data(1,1,:),[7,1]);
 z=reshape(Path.z.data(1,1,:),[7,1]);
 psi=reshape(Path.psi.data(1,1,:),[7,1]);
 
-quadModel.J = diag([quadModel.Jx; quadModel.Jy; quadModel.Jz]);
+% quadModel.J = diag([quadModel.Jx; quadModel.Jy; quadModel.Jz]);
+
+% Reupdate some path - for debugging purpose
+x=[0;0;0;0;0;0;0];
+y=[0;0;0;0;0;0;0];
+z=[-4;-4;-4;-4;-4;-4;-4];
+
+fprintf('Initialising quadrotor struct...\n');
+% Initialise quadrotor struct
+run('quad_struct_init');
+
+fprintf('Startup complete!\n');
 
 % Bus types declarations
 

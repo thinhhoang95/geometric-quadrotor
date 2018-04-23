@@ -1,13 +1,17 @@
 function blkStruct = slblocks
-		% This function specifies that the library should appear
-		% in the Library Browser
-		% and be cached in the browser repository
 
-		Browser.Library = 'NLGCToolbox';
-		% 'mylib' is the name of the library
+blkStruct.OpenFcn = {'NLGCToolbox','NLGCTestSuite'}; 
 
-		Browser.Name = 'Thinh - NLGC for Quadrotor';
-		% 'My Library' is the library name that appears 
-             % in the Library Browser
+Browser(1).Library = 'NLGCToolbox'; 
 
-		blkStruct.Browser = Browser; 
+Browser(1).Name    = 'Thinh - NLGC for Quadrotor'; 
+
+Browser(1).IsFlat  = 1;
+
+Browser(2).Library = 'NLGCTestSuite'; 
+
+Browser(2).Name    = 'Thinh - NLGC Test Suite'; 
+
+Browser(2).IsFlat  = 1;% Is this library "flat" (i.e. no subsystems)?
+
+blkStruct.Browser = Browser; 
