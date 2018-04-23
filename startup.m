@@ -1,10 +1,9 @@
 clear all;
 clc;
 
-fprintf('NLGC Quadrotor 1.1 - Geometric Tracking Control Simulation\n');
+fprintf('NLGC Quadrotor 2.0 - Geometric Tracking Control Simulation\n');
 fprintf('By Hoang Dinh Thinh (thinh@neuralmetrics.net)\n');
-fprintf('Built upon a Quadrotor model from Robotics Toolbox by Peter Corke.\n');
-fprintf('Now starting Robotics Toolbox...\n');
+fprintf('Now starting Robotics Toolbox... Visit http://petercorke.com/wordpress/toolboxes/robotics-toolbox\n');
 
 run('rvctools/startup_rvc.m');
 
