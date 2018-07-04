@@ -15,6 +15,8 @@ Finally, hope you will have a lot of fun whether you are conducting research or 
 ### Getting started
 Open the Simulink project, then navigate to SML Quadrotor Simulations, Synthesis and pick one of the two examples: attitude tracking or position tracking.
 
+Detailed documentation of the software can be found in my thesis at https://www.researchgate.net/publication/325655279_Application_and_simulation_of_nonlinear_geometric_control_for_Quadrotor_UAVs. Chapter 4 describes the inputs ant outputs of the blocks. Users interested in theoretical foundation might find chapter 3 helpful. 
+
 ### License
 Copyright 2018 (c) NeuralMetrics SA
 
