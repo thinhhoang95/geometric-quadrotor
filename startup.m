@@ -29,8 +29,8 @@ psi=reshape(Path.psi.data(1,1,:),[7,1]);
 % quadModel.J = diag([quadModel.Jx; quadModel.Jy; quadModel.Jz]);
 
 % Reupdate some path - for debugging purpose
-x=[0;0;0;0;0;0;0];
-y=[0;0;0;0;0;0;0];
+x=[0     2     0    -2     0     1    -2]';
+y=[0    -1     0     1     0    -1     0]';
 z=[-4;-4;-4;-4;-4;-4;-4];
 
 fprintf('Initialising quadrotor struct...\n');
