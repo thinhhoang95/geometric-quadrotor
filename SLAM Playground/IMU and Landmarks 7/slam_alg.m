@@ -10,14 +10,14 @@ run('slam_sanitizer');
 % Parameters
 kf_interval_imu = 30; % 20 IMU samples for 1 keyframe
 kf_interval_cam = 30; % 20 camera samples for 1 keyframe
-window_size = 12; % sliding window length
+window_size = 7; % sliding window length
 imu_sampling_time = 0.02; % sampling time of IMU data
 focal_length = 0.024; % focal length is 24mm
-num_of_landmarks = 5;
+num_of_landmarks = 3;
 total_state_size = window_size * 9 + 3 * num_of_landmarks; % 3 is the number of observing landmarks, THIS IS THE STATE SIZE!
 residual_vector_length = (window_size - 1) * 9 + window_size * num_of_landmarks * 2;
 
-gn_iterations = 500; % num of iterations per Gauss-Newton loop
+gn_iterations = 40; % num of iterations per Gauss-Newton loop
 
 % Initialize variables
 r_R = zeros(window_size-1, 3); % attitude error preintegration between poses
@@ -100,7 +100,7 @@ for iw=1:window_range_to
         
         %H = J'*WM*J+Jp'*Jp+0.1*eye(size(J,2)); % No marginalization, Levenberg-Marquadt
         %b = -J'*WM*residualt' - Jp'*residualp';
-        H = J'*WM*J+10*eye(size(J,2)); % No marginalization, Levenberg-Marquadt
+        H = J'*WM*J+0.1*eye(size(J,2)); % No marginalization, Levenberg-Marquadt
         b = -J'*WM*residualt';
         Hstar = [H Jl';
             Jl zeros(num_of_landmarks)];
@@ -113,9 +113,9 @@ for iw=1:window_range_to
         if(det(H)<0.005)
             fprintf('Hessian matrix is near rank-deficient at iteration %d \n', is);
         end
-        % triangle = inv(Hstar)*bstar;
-        % delta = triangle(1:total_state_size-9);
-        delta = inv(H)*b;
+        triangle = inv(Hstar)*bstar;
+        delta = triangle(1:total_state_size-9);
+        % delta = inv(H)*b;
         % Parameter Update
         for j=2:window_size
            offset_from = (j-1-1)*9+1; % Begin of the phi_j
